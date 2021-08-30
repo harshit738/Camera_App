@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .box {
+            margin: auto; /*it helps in getting the element in the middle (horizontally)*/
+            margin-top: calc((100vh - 15rem)/2); /* to get the elements in middle (vertically) */
+            height: 15rem; 
+            width: 15rem;
+            background-color: yellow;
+            animation: scale 2s infinite; /* animation : name_of_animation_fn , time, no_of_times_it_should_repeat*/
+        }
+
+        .box-2 {
+            height: 10rem;
+            width: 10rem;
+            border-radius: 50%;
+            position: fixed;  /*positon fixed takes body as refernce and absolute takes nearest realtive parent as reference (if noone the body is default)*/
+            background-color: red;
+            opacity: 0.7;
+            top: 50%;
+            left: 50%;
+            animation: fader 1s infinite;
+            transform: translate(-50%, -50%); /*the figure was in middle from top: 50% && left: 50% but its top-left corner 
+            its top-left corner was at that middle point so to get its centre at miidle, -50%width and -50%height peeche le gye*/
+            
+            /*-50% width left chala gya and -50% height upar le gya taki figure ka center or page ka center ek sath aa jaye*/
+        }
+
+        @keyframes scale {  /*keyframes are used for animation -> 0% start of animation, 50% -> middle of animation, 100% -> end of animation*/
+            0% {
+                transform: scale(1);  /*transform ek figure ko transform krne ke kaam ata hai, scale-> size manage krta hai, translate -> x or y direction me move krwa skta hai */
+                border-radius: 0%;
+            }
+
+            50% {
+                transform: scale(1.5);
+                border-radius: 50%;
+            }
+
+            100% {
+                transform: scale(1);
+                border-radius: 0%;
+            }
+        }
+
+        @keyframes fader {
+            0% {
+                opacity: 1; /*opacity is transparency*/
+            }
+
+            50% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <div class="box-2"></div>
+</body>
+</html>

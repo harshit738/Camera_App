@@ -1,0 +1,135 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.video-container {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-color: #444;
+}
+
+video {
+    height : 100%;
+    width : 100%;
+}
+
+#record, #capture {
+    position: fixed; /* fixed takes refernce from body , absolute takes refence from recent relative container (if noone -> then body)*/
+    right: 2rem;
+    height: 3.5rem;
+    width: 3.5rem;
+    border-radius: 50%;
+    border: none;
+    z-index: 3;
+}
+
+#record {
+    top: 40vh;
+    background: black;
+    border: 5px solid white;
+}
+
+#capture {
+    top: 55vh;
+    background: black;
+    border: 5px solid white;
+}
+
+#record div {
+    background: red;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    margin: auto;
+}
+
+#capture div {
+    background: white;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    margin: auto;
+}
+
+.capture-animation {
+    animation: inOut .5s;
+}
+
+.record-animation {
+    animation: inOut 1s infinite;
+  }
+
+@keyframes inOut {
+    0%{
+        transform: scale(1);
+    }
+    
+    50%{
+        transform: scale(1.3);
+    }
+
+    100%{
+        transform: scale(1);
+    }
+}
+
+.filter-container {
+    height: 25rem;
+    width: 5rem;
+    position: fixed;
+    background-color: #fff;
+    left: 2rem;
+    top: calc((100vh - 25rem) / 2);
+    z-index: 3;
+}
+
+.filters {
+    border: 3px solid #fff;
+    width: 100%;
+    height: calc(25rem / 6);
+    background: url(landscape.jpg);
+    background-size: cover;
+    background-blend-mode: soft-light;
+}
+
+.zoom-in-out-container {
+    height: 8rem;
+    width: 4rem;
+    position: fixed;
+    right: 1.7rem;
+    top: 4rem;
+    z-index: 3;
+}
+
+
+.zoom-in-out-container div {
+    width: 100%;
+    height: 50%;
+    color: #fff;
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+    background-color: #2f3640;
+}
+
+
+.filter-div {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+}
+
+#gallery{
+    position: fixed;
+    z-index: 3;
+    height: 3.5rem;
+    width: 3.5rem;
+    right: 1.7rem;
+    bottom: 4rem;
+}

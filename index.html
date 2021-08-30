@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" >
+    <title>Document</title>
+</head>
+<body>
+    <!-- autoplay : directly plays the video when we start the server
+    controls : jo camera me play/ pause etc conrtols hai unhe lane me help krta hai   -->
+    <div class="video-container">
+        <video autoplay style = "transform: scale(1);"></video>
+    </div>
+    
+    <button id="record"><div></div></button>
+    <button id="capture"><div></div></button>
+    <div class="filter-container">
+        <div class="filters" style="background-color: #e67d2267;"></div>
+        <div class="filters" style="background-color: #2ecc7067;"></div>
+        <div class="filters" style="background-color: #fbc5315d;"></div>
+        <div class="filters" style="background-color: #dcdde156;"></div>
+        <div class="filters" style="background-color: #00aaff6b;"></div>
+        <div class="filters"></div>
+    </div>
+
+    <div class="zoom-in-out-container">
+        <div class="zoom-in">+</div>
+        <div class="zoom-out">-</div>
+    </div>
+    <button id = "gallery">
+        Gallery
+    </button>
+    <script src="dbScript.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

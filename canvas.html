@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>    
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+    
+    </style>
+</head>
+<body>
+    <canvas></canvas>
+
+    <script>
+        
+      let canvas = document.querySelector("canvas"); 
+      canvas.height = window.innerHeight; //window ki innerheight assign krdi (puri height)
+      canvas.width = window.innerWidth;   //window ki innerwidth assign krdi (puri width)
+
+      let ctx = canvas.getContext("2d");  // 2d bnane ke liye
+      // ctx.beginPath();  // yha se path start hoga
+      // ctx.moveTo(100, 200);  // this the is starting point
+      // ctx.lineTo(300, 400);  // this makes line from starting point to given point
+      // ctx.strokeStyle = "blue";  // color of line
+      // ctx.lineWidth = 20;  // width of line
+      // ctx.stroke();  // makes line visible in vanavs
+      // ctx.beginPath();  // humne dobara beginPath() kiya kyuki agar hum agli line me kuch changes krenge to wo purani me na reflect ho eg: color change 
+      // ctx.moveTo(300, 400);
+      // ctx.lineTo(600, 200);
+      // ctx.strokeStyle = "red";
+      // ctx.stroke();
+      // ctx.strokeStyle = "blue"  
+      // ctx.lineWidth = 30     // strokeStyle and lineWidth should be used before stroke is used on canvas 
+      // ctx.strokeRect(100, 200, 300, 200)  // makes a rectangle from (100,200) to (300, 200) -> it doesnot need stroke function to be visible , it has inbuilt stroke
+      // ctx.fillStyle = "red"   // strokeRect makes rectangle and fillRect fills the rectangle with the given color
+      // ctx.fillRect(100, 200, 300, 200) // fillRect() makes a rectangle which has the property of filling color inside 
+
+
+      let img = document.createElement("img");   // creates an element if img type
+      img.src = "img.jpg";   // src of ing -> first i downloaded and then gave the address/src
+
+      img.addEventListener("load", function() {  // eventListener added to img tag as it takes some time to load and when it loads completely , the given event is fired
+        ctx.drawImage(img, 0, 0, 1300, 1000);   // draws image, parameters-> (which_Image, starting_pt, ending_pt, width_of_img, height_of_img)
+      });
+
+
+      
+    
+    </script>
+    
+</body>
+</html>

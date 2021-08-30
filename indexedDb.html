@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="name" type="text" placeholder="Db name" value="DB">
+    <input type="number"  id="version" placeholder="1.0" value="1">
+    <button id="create">Create</button>
+
+    <hr />
+
+    <input type="text" id="note" placeholder="Your note"/>
+    <button id = "add">Add Note</button>
+    <script>
+        let name = document.querySelector("#name")
+        let version = document.querySelector("#version")
+        let btn = document.querySelector("button#create")
+
+        let note = document.querySelector("#note");
+        let addBtn = document.querySelector("#add");
+
+        let db,v, dbAccess;
+
+        addBtn.addEventListener("click", function(){  // will add a note in the database 
+            let val = note.value;                     
+            if(!dbAccess){                            // if we don't have the dbAccess then we cannot append notes in it
+                alert("Pls open a db to add note");
+                return;
+            }
+
+            let tx = dbAccess.transaction("cs", "readwrite"); // will open a transaction which will help in adding the notes...
+                                                              // transaction is of read/write type as we have to perform write operation also.
+            let csObjectStore = tx.objectStore("cs");   // we have db access..this command will get the object store in which we have to
+            let data = {                                // add the note. 
+                nId : Date.now(),  // get the date recent value and also count miliseconds , therefore unqiue everytime -> hence used as ID.
+
+                noteValue : val,  // value or name of note.
+            };
+            csObjectStore.add(data);  // adding the note to object store (equivalent to a table)
+        });
+
+        btn.addEventListener("click",function(){
+            db = name.value
+            v = version.value
+            let request = indexedDB.open(db,v)  // will send a request in opening database
+            request.addEventListener("success",function(){   // if db opens -> success -> this event will work
+                alert("db was created");
+                dbAccess = request.result;  // having db's access  
+                viewNotes();   // viewing notes (if any)
+            })
+
+
+            request.addEventListener("upgradeneeded",function(){
+                alert("upgrade occured")   // upgradeneeded is called : 1. if db is created____2. if db's version is changed or updated 
+                let db = request.result
+                db.createObjectStore("cs",{keyPath:"nId"}) // we can only create objectStore inside upgradeneeded event
+                // this creation of object store should be done once as if done multiple time it will generate error as we cannot
+                // create multiple object stores of same name
+            });
+
+            request.addEventListener("error",function(){
+                alert("some error occured")  // if error occurs : db not there, specified version not present, any other error....
+            });
+        });
+
+        function viewNotes() {
+
+            let tx = dbAccess.transaction("cs", "readonly"); // getting readonly access transaction as we only want to view notes.
+            let csObjectStore = tx.objectStore("cs");
+            let req = csObjectStore.openCursor();
+
+            req.addEventListener("success", function() {
+                let cursor = req.result;
+                if(cursor){
+                    console.log(cursor.value);
+                    cursor.continue();
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>
